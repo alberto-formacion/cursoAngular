@@ -1,0 +1,17 @@
+<div class="producto"
+  *ngFor="let producto of listaProductos"
+  (click)="anadirProducto(producto)">
+  <h2>{{producto.nombre}}</h2>
+  <img src="{{producto.imagen}}">
+  <h3>{{producto.precio}} &euro;</h3>
+</div>
+<div class="clear">
+  <ul>
+    <li *ngFor="let prodCarrito of carrito">
+      {{prodCarrito.nombre}}
+    </li>
+  </ul>
+</div>
+<div>
+  Total: {{precioTotal}} &euro;
+</div>

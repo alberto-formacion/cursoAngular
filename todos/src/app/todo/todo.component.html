@@ -1,0 +1,10 @@
+<input type="text" [(ngModel)]="nombreTodo">
+<input type="checkbox" [(ngModel)]="importanteTodo">
+<button (click)="guardarTodo()">Guardar</button>
+<ul>
+    <li *ngFor="let todo of listaTodos" 
+        [ngClass]="anadirClases(todo)"
+        (click)="terminarTarea(todo)">
+        {{todo.nombre}}
+    </li>
+</ul>

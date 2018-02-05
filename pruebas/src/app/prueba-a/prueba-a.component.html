@@ -1,0 +1,29 @@
+<p>
+  <button (click)="tocado()">Tocame y veras</button>
+  {{texto}}
+</p>
+
+<div>
+  <button (click)="mensajeToggle()">Aparecer y desaparecer</button>
+</div>
+
+<div *ngIf="aparece">
+  Mensaje con directiva IF
+</div>
+<div>
+  <button (click)="cambiarColor('red')">Rojo</button>
+  <button (click)="cambiarColor('green')">Verde</button>
+  <button (click)="cambiarColor('yellow')">Amarillo</button>
+</div>
+
+<ul [ngSwitch]="color">
+  <li *ngSwitchCase="'red'" [ngStyle]="{'background': color}">
+    Esto pasa cuando el color es rojo
+  </li>
+  <li *ngSwitchCase="'green'" [ngStyle]="{'background': color}">
+    Esto pasa cuando el color es verde
+  </li>
+  <li *ngSwitchCase="'yellow'" [ngStyle]="{'background': color}">
+    Esto pasa cuando el color es amarillo
+  </li>  
+</ul>

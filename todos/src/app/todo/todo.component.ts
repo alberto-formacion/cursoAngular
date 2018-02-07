@@ -8,21 +8,19 @@ import { Todo } from './todo';
 })
 export class TodoComponent implements OnInit {
 
-  public nombreTodo: string;
-  public importanteTodo: boolean;
   public listaTodos: Todo[] = new Array<Todo>();
+  public nuevoTodo: Todo;
 
   constructor() { }
 
   ngOnInit() {
-    this.listaTodos.push(new Todo("Tarea fija", false, false));
+    this.nuevoTodo = new Todo("", false, false, "");
+    this.listaTodos.push(new Todo("Tarea fija", false, false,""));
   }
 
   guardarTodo(){
-    const todo = new Todo(this.nombreTodo, false, this.importanteTodo);
-    this.listaTodos.push(todo);
-    this.nombreTodo = "";
-    this.importanteTodo = false;
+    this.listaTodos.push(this.nuevoTodo);
+    this.nuevoTodo = new Todo("", false, false, "");
   }
 
   anadirClases(todo: Todo){

@@ -1,10 +1,21 @@
-<input type="text" [(ngModel)]="nombreTodo">
-<input type="checkbox" [(ngModel)]="importanteTodo">
+<div>
+    <input type="text" [(ngModel)]="nuevoTodo.nombre">
+    <input type="checkbox" [(ngModel)]="nuevoTodo.importante"> Importante
+</div>
+<div>
+<label for="color">Color</label>
+    <input type="radio" value="red" [(ngModel)]="nuevoTodo.color"> Rojo
+    <input type="radio" value="green" [(ngModel)]="nuevoTodo.color"> Verde
+    <input type="radio" value="yellow" [(ngModel)]="nuevoTodo.color"> Amarillo
+</div>
 <button (click)="guardarTodo()">Guardar</button>
 <ul>
-    <li *ngFor="let todo of listaTodos" 
+    <li *ngFor="let todo of listaTodos | priorizarTodos" 
         [ngClass]="anadirClases(todo)"
-        (click)="terminarTarea(todo)">
+        (click)="terminarTarea(todo)"
+        [ngStyle]="{color: todo.color}">
         {{todo.nombre}}
     </li>
 </ul>
+
+<hr/>

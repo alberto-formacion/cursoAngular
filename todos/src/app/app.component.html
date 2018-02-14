@@ -1,1 +1,7 @@
-<app-todo></app-todo>
+<nav>
+    <ul>
+        <li><a [routerLink]="['/home']" [routerLinkActive]="['activa']">Home</a></li>
+        <li><a [routerLink]="['/todos']" [routerLinkActive]="['activa']">Todos</a></li>
+    </ul>
+</nav>
+<router-outlet></router-outlet>

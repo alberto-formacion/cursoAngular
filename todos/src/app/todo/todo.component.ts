@@ -33,7 +33,7 @@ export class TodoComponent implements OnInit {
   }
 
   terminarTarea(todo: Todo){
-    todo.terminado = true;
+    todo.terminado = !todo.terminado;
   }
 
 }

@@ -1,14 +1,21 @@
-<div>
-    <input type="text" [(ngModel)]="nuevoTodo.nombre">
-    <input type="checkbox" [(ngModel)]="nuevoTodo.importante"> Importante
-</div>
-<div>
-<label for="color">Color</label>
-    <input type="radio" value="red" [(ngModel)]="nuevoTodo.color"> Rojo
-    <input type="radio" value="green" [(ngModel)]="nuevoTodo.color"> Verde
-    <input type="radio" value="yellow" [(ngModel)]="nuevoTodo.color"> Amarillo
-</div>
-<button (click)="guardarTodo()">Guardar</button>
+<form #formTodo="ngForm" (ngSubmit)="guardarTodo(); formTodo.reset()" >
+    <div>
+        <input type="text" [(ngModel)]="nuevoTodo.nombre" name="nombre" #nombre="ngModel" required pattern="[a-zA-Z]+" >
+        <span *ngIf="nombre.touched && !nombre.valid">Error</span>
+    </div>
+    <div>
+        <input type="checkbox" name="importante" [(ngModel)]="nuevoTodo.importante"> Importante
+    </div>
+    <div>
+    <label for="color">Color</label>
+        <input type="radio" name="color" value="red" [(ngModel)]="nuevoTodo.color"> Rojo
+        <input type="radio" name="color" value="green" [(ngModel)]="nuevoTodo.color"> Verde
+        <input type="radio" name="color" value="yellow" [(ngModel)]="nuevoTodo.color"> Amarillo
+    </div>
+    <div>
+        <button type="submit" [disabled]="!formTodo.form.valid">Guardar</button>
+    </div>
+</form>
 <ul>
     <li *ngFor="let todo of listaTodos | priorizarTodos" 
         [ngClass]="anadirClases(todo)"
@@ -19,3 +26,12 @@
 </ul>
 
 <hr/>
+
+<ul>
+    <li *ngFor="let todo of listaTodos | todosTerminados" 
+        [ngClass]="anadirClases(todo)"
+        (click)="terminarTarea(todo)"
+        [ngStyle]="{color: todo.color}">
+        {{todo.nombre}}
+    </li>
+</ul>

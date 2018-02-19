@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Todo } from '../todo/todo';
 
 @Pipe({
-  name: 'priorizarTodos',
-  pure: false
+  name: 'priorizarTodos'
 })
 export class PriorizarTodosPipe implements PipeTransform {
 

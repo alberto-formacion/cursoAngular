@@ -15,6 +15,16 @@
     width: 50px;
 }
 
+label{
+    display: inline-block;
+    width: 100px;
+}
+
+form div{
+    padding: 5px;
+    margin: 5px;
+}
+
 .clear{
     clear: both;
 }

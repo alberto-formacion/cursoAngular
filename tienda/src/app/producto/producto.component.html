@@ -1,5 +1,30 @@
+<div>
+  <form #formProducto="ngForm" (ngSubmit)="guardarProducto(); formProducto.reset();">
+    <div>
+      <label>Nombre</label>
+      <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="producto.nombre" required />
+      <span *ngIf="nombre.touched && !nombre.valid">El nombre es obligatorio</span>
+    </div>
+    <div>
+      <label>Precio</label>
+      <input type="text" name="precio" #precio="ngModel" [(ngModel)]="producto.precio" required pattern="\d+(,\d{2})?" />
+      <span *ngIf="precio.touched && !precio.valid">El precio tiene q ser un numero</span>
+    </div>
+    <div>
+      <label>Stock</label>
+      <input type="text" name="stock" #stock="ngModel" [(ngModel)]="producto.stock" required pattern="[0-9]+"/>
+      <span *ngIf="stock.touched && !stock.valid">El stock tiene que ser un numero</span>
+    </div>
+    <button type="submit">Guardar</button>
+  </form>
+</div>
+<hr>
+<div>
+  <label>Buscador</label>
+  <input type="text" [(ngModel)]="productoBuscar">
+</div>
 <div class="producto"
-  *ngFor="let producto of listaProductos"
+  *ngFor="let producto of listaProductos | buscador:productoBuscar"
   (click)="anadirProducto(producto)">
   <h2>{{producto.nombre}}</h2>
   <img src="{{producto.imagen}}">

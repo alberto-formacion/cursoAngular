@@ -1,0 +1,7 @@
+<input type="text" [(ngModel)]="nombre">
+<app-hijo 
+  [nom]="nombre"
+  (info)="showInfo($event)">
+</app-hijo>
+<hr>
+{{nombreHijo}}

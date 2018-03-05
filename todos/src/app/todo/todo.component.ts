@@ -20,6 +20,7 @@ export class TodoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this._todoService.obtenerTodos();
     this.nuevoTodo = new Todo('', false, false, '');
     this._route.params.forEach((params: Params) => {
       this.nuevoTodo.nombre = params['nombreTodoParam'];

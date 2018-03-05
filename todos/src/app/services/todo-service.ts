@@ -1,17 +1,28 @@
+import { HttpClient } from '@angular/common/http';
 import { Todo } from './../todo/todo';
 import { Injectable } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TodoService {
 
   private listaTodos: Todo[] = new Array<Todo>();
 
-  constructor() { }
+  constructor(
+    private _http: HttpClient
+  ) { }
+
+  obtenerTodos() {
+    this._http.get<Todo[]>('http://localhost:8080/api/todos').subscribe(todos => {
+      this.listaTodos = todos;
+    });
+  }
 
   guardarTodo(nuevoTodo: Todo) {
-    this.listaTodos = [...this.listaTodos, nuevoTodo];
+    this._http.post('http://localhost:8080/api/todos', nuevoTodo).subscribe(resultado =>{
+      this.obtenerTodos();
+    });
+    // this.listaTodos = [...this.listaTodos, nuevoTodo];
   }
 
   terminarTarea(todo: Todo) {

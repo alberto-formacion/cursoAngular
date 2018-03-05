@@ -22,7 +22,18 @@ var router = express.Router();              // Obtener instancia de Router - htt
 
 // middleware para todas las peticiones
 router.use(function (req, res, next) {
-    console.log('Esto sucede siempre');
+    // Dominio que queremos del que queremos permitir el acceso puede ser * para cualquiera
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+
+    // Verbos HTTP que vamos a permitir
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Cabeceras que vamos a permitir
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Para el uso de sesiones o cookies
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
     next(); // lo enviamos a la ruta, para que no se pare en este metodo
 });
 
